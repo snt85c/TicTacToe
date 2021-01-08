@@ -34,6 +34,7 @@ private String [][] board = new String [3][3];
         System.out.println(" ╚═══╩═══╩═══╝ ");
       }
     }
+    System.out.println("--------------------");
   }
   public boolean checkWinCondition(){
     if(checkWinRow() || checkWinColumn() || checkWinDiagonal() ){

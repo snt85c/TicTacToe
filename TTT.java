@@ -47,9 +47,11 @@ class TTT{
       int second =Integer.parseInt(String.valueOf(selection.charAt(1)));
       if(!board.setBoard(first, second, "X")){
         System.out.println("slot busy, change selection");
+        this.p1Plays();
       }
-      board.display();
+
       if(board.checkWinCondition()){
+        board.display();
         System.out.println("GAME OVER");
         //gameOn= false;
         this.start(); //neverending for testing
@@ -66,7 +68,7 @@ class TTT{
       int first = Integer.parseInt(String.valueOf(selection.charAt(0)));
       int second =Integer.parseInt(String.valueOf(selection.charAt(1)));
       if(!board.setBoard(first, second, "O")){
-        continue;
+        pcPlays();
       } else {
         board.display();
         if(board.checkWinCondition()){
