@@ -29,7 +29,7 @@ class TTT{
   }
 
   public void p1Plays(){
-    String selection = " ";
+    String selection = "";
     boolean gameOn = true;
     while(gameOn){
       System.out.print("select a box: ");
@@ -68,7 +68,7 @@ class TTT{
       int first = Integer.parseInt(String.valueOf(selection.charAt(0)));
       int second =Integer.parseInt(String.valueOf(selection.charAt(1)));
       if(!board.setBoard(first, second, "O")){
-        pcPlays();
+        continue;
       } else {
         board.display();
         if(board.checkWinCondition()){
