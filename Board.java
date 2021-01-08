@@ -2,7 +2,7 @@ import java.util.stream.*;
 import java.util.Arrays;
 
 class Board{
-private String [][] board = new String [3][3];
+  private String [][] board = new String [3][3];
 
   public void create(){
     for(int i = 0; i < 3; i++){
@@ -36,59 +36,76 @@ private String [][] board = new String [3][3];
     }
     System.out.println("--------------------");
   }
+
   public boolean checkWinCondition(){
-    if(checkWinRow() || checkWinColumn() || checkWinDiagonal() ){
+    if(checkWinRow() || checkWinColumn() || checkWinDiagonal() || checkDraw() ){
       return true;
     }
     return false;
   }
 
-public boolean checkWinRow(){
-  String check;
-  for(int i = 0; i < 3; i++){
-    check = "";
-      for(int ii = 0; ii<3; ii++){
-        if(board[i][ii] == "X" || board[i][ii] == "O" ){
-          check = check +  board[i][ii];
-        }
-      } 
-      if(check.equals("XXX") ||  check.equals("OOO")){
-        System.out.println("rowWIN");
-        return true;
-      }
-    }
-  return false;
-}  
-
-public boolean checkWinColumn(){
-  String check;
+  public boolean checkWinRow(){
+    String check;
     for(int i = 0; i < 3; i++){
       check = "";
-      for(int ii = 0; ii<3; ii++){
-        if(board[ii][i] == "X" || board[ii][i] == "O" ){
-          check = check +  board[ii][i];
+        for(int ii = 0; ii<3; ii++){
+          if(board[i][ii] == "X" || board[i][ii] == "O" ){
+            check = check +  board[i][ii];
+          }
+        } 
+        if(check.equals("XXX") ||  check.equals("OOO")){
+          System.out.println("rowWIN");
+          return true;
         }
       }
-      if(check.equals("XXX") ||  check.equals("OOO")){
-        System.out.println("columnWIN");
+    return false;
+  }  
+
+  public boolean checkWinColumn(){
+    String check;
+      for(int i = 0; i < 3; i++){
+        check = "";
+        for(int ii = 0; ii<3; ii++){
+          if(board[ii][i] == "X" || board[ii][i] == "O" ){
+            check = check +  board[ii][i];
+          }
+        }
+        if(check.equals("XXX") ||  check.equals("OOO")){
+          System.out.println("columnWIN");
+          return true;
+        }
+      }
+    return false;
+  }
+
+  public boolean checkWinDiagonal(){
+    String check = board[0][0] +  board[1][1] + board[2][2]; 
+    if(check.equals("XXX")|| check.equals("OOO")){
+      System.out.println("diagonal win");
+      return true;
+    }
+    check = board[0][2] +  board[1][1] + board[2][0]; 
+    if(check.equals("XXX")|| check.equals("OOO")){
+      System.out.println("diagonal win");
+      return true;
+    }
+    return false;
+  }
+
+  public boolean checkDraw(){
+    int check=0;
+    for(int i = 0; i < 3; i++){
+        for(int ii = 0; ii<3; ii++){
+          if(board[i][ii]==" "){
+            check++;
+          }
+        }
+      }
+      if(check == 0){
+        System.out.println("Draw condition");
         return true;
       }
-    }
-  return false;
-}
-
-public boolean checkWinDiagonal(){
-  String check = board[0][0] +  board[1][1] + board[2][2]; 
-  if(check.equals("XXX")|| check.equals("OOO")){
-    System.out.println("diagonal win");
-    return true;
+    return false;
   }
-   check = board[0][2] +  board[1][1] + board[2][0]; 
-  if(check.equals("XXX")|| check.equals("OOO")){
-    System.out.println("diagonal win");
-    return true;
-  }
-  return false;
-}
 
 }
