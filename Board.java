@@ -1,8 +1,6 @@
-import java.util.stream.*;
-import java.util.Arrays;
 
 class Board{
-  private String [][] board = new String [3][3];
+  final private String [][] board = new String [3][3];
 
   public void create(){
     for(int i = 0; i < 3; i++){
@@ -13,7 +11,7 @@ class Board{
   }
 
   public boolean setBoard(int first, int second, String selection){
-    if(this.board[first][second] == "X" || this.board[first][second] == "O" ){
+    if(this.board[first][second].equals("X") || this.board[first][second].equals("O")){
       return false;
     }
     this.board[first][second] = selection;
@@ -38,22 +36,19 @@ class Board{
   }
 
   public boolean checkWinCondition(){
-    if(checkWinRow() || checkWinColumn() || checkWinDiagonal() || checkDraw() ){
-      return true;
-    }
-    return false;
+    return checkWinRow() || checkWinColumn() || checkWinDiagonal() || checkDraw();
   }
 
   public boolean checkWinRow(){
-    String check;
+    StringBuilder check;
     for(int i = 0; i < 3; i++){
-      check = "";
+      check = new StringBuilder();
         for(int ii = 0; ii<3; ii++){
-          if(board[i][ii] == "X" || board[i][ii] == "O" ){
-            check = check +  board[i][ii];
+          if(board[i][ii].equals("X") || board[i][ii].equals("O")){
+            check.append(board[i][ii]);
           }
         } 
-        if(check.equals("XXX") ||  check.equals("OOO")){
+        if(check.toString().equals("XXX") ||  check.toString().equals("OOO")){
           System.out.println("rowWIN");
           return true;
         }
@@ -65,11 +60,10 @@ class Board{
     String check;
       for(int i = 0; i < 3; i++){
         check = "";
-        for(int ii = 0; ii<3; ii++){
-          if(board[ii][i] == "X" || board[ii][i] == "O" ){
-            check = check +  board[ii][i];
+        for(int ii = 0; ii<3; ii++)
+          if (board[ii][i].equals("X") || board[ii][i].equals("O")) {
+            check = check + board[ii][i];
           }
-        }
         if(check.equals("XXX") ||  check.equals("OOO")){
           System.out.println("columnWIN");
           return true;
@@ -96,7 +90,7 @@ class Board{
     int check=0;
     for(int i = 0; i < 3; i++){
         for(int ii = 0; ii<3; ii++){
-          if(board[i][ii]==" "){
+          if(board[i][ii].equals(" ")){
             check++;
           }
         }

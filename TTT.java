@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -37,7 +36,7 @@ class TTT{
       
         while(scan.hasNextInt()){
           selection = String.valueOf(scan.nextInt());
-          if(Integer.valueOf(selection) < 1 || Integer.valueOf(selection) > 9){
+          if(Integer.parseInt(selection) < 1 || Integer.parseInt(selection) > 9){
             System.out.print("wrong selection, select another: ");
             continue;
           }else{
@@ -61,7 +60,7 @@ class TTT{
      }
   }
 
-  public int pcPlays(){
+  public void pcPlays(){
     while(true){
       int random =  rand.nextInt(9)+1;
       String selection = keys.get(random);
@@ -76,7 +75,7 @@ class TTT{
         //gameOn= false;
         this.start(); //neverending for testing
       }
-        return -1;
+        return;
       }
     }
   }
