@@ -1,8 +1,8 @@
 
 class Board{
-  final private String [][] board = new String [3][3];
-
-  public void create(){
+  private String [][] board = new String [3][3];
+  
+  public void initializeBoardAsEmpty(){
     //initialize an empty board
     for(int i = 0; i < 3; i++){
       for(int ii = 0; ii<3; ii++){
@@ -11,17 +11,23 @@ class Board{
     }
   }
 
-  public boolean setBoard(int first, int second, String selection){
-    //gets the coordinate to change a box, as well as the sign the box will be changed with. if the box is not empty, return false, otherwise true and assign a letter
+  public boolean setSymbolOnBoard(int first, int second, String symbol){
     if(this.board[first][second].equals("X") || this.board[first][second].equals("O")){
       return false;
     }
-    this.board[first][second] = selection;
+    this.board[first][second] = symbol;
     return true;
   }
 
+  public String getBoxOnBoard(int firstCoordinate, int secondCoordinate){
+    return this.board[firstCoordinate][secondCoordinate];
+  }
+
+  public String[][] getBoard(){
+    return this.board;
+  }
+
   public void display(){
-    //basci checker display 3x3
     //empty the screen
     /*System.out.print("\033[H\033[2J");
     System.out.flush();*/
@@ -42,13 +48,11 @@ class Board{
     System.out.println("--------------------");
   }
 
-  public boolean checkWinCondition(){
-    //return the value of 4 winning condition
-    return checkWinRow() || checkWinColumn() || checkWinDiagonal() || checkDraw();
+  public boolean checkALLWinCondition(){
+     return checkWinRow() || checkWinColumn() || checkWinDiagonal() || checkDraw();
   }
 
   public boolean checkWinRow(){
-    //for every row, makes a string that contains the letter in it, if it is similar to "XXX" or "OOO" returns true
     StringBuilder check;
     for(int i = 0; i < 3; i++){
       check = new StringBuilder();
@@ -65,7 +69,6 @@ class Board{
   }  
 
   public boolean checkWinColumn(){
-    //for every column, makes a string that contains the letter in it, if it is similar to "XXX" or "OOO" returns true
     StringBuilder check;
       for(int i = 0; i < 3; i++){
         check = new StringBuilder();
