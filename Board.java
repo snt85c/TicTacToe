@@ -1,7 +1,7 @@
 
 class Board{
   private String [][] board = new String [3][3];
-  
+
   public void initializeBoardAsEmpty(){
     //initialize an empty board
     for(int i = 0; i < 3; i++){
@@ -36,11 +36,11 @@ class Board{
     for(int i = 0; i < 3; i++){
       System.out.print(" ║ ");
       for(int ii = 0; ii<3; ii++){
-          System.out.print(board[i][ii] + " ║ ");
+        System.out.print(board[i][ii] + " ║ ");
       }
       System.out.println();
       if(i<2){
-      System.out.println(" ╠═══╬═══╬═══╣ ");
+        System.out.println(" ╠═══╬═══╬═══╣ ");
       } else {
         System.out.println(" ╚═══╩═══╩═══╝ ");
       }
@@ -49,49 +49,48 @@ class Board{
   }
 
   public boolean checkALLWinCondition(){
-     return checkWinRow() || checkWinColumn() || checkWinDiagonal() || checkDraw();
+    return checkWinRow() || checkWinColumn() || checkWinDiagonal() || checkDraw();
   }
 
   public boolean checkWinRow(){
     StringBuilder check;
     for(int i = 0; i < 3; i++){
       check = new StringBuilder();
-        for(int ii = 0; ii<3; ii++)
-          if(board[i][ii].equals("X") || board[i][ii].equals("O")) {
-            check.append(board[i][ii]);
-        } 
-        if(check.toString().equals("XXX") ||  check.toString().equals("OOO")){
-          System.out.println("rowWIN");
-          return true;
+      for(int ii = 0; ii<3; ii++)
+        if(board[i][ii].equals("X") || board[i][ii].equals("O")) {
+          check.append(board[i][ii]);
         }
+      if(check.toString().equals("XXX") ||  check.toString().equals("OOO")){
+        System.out.println("rowWIN");
+        return true;
       }
+    }
     return false;
-  }  
+  }
 
   public boolean checkWinColumn(){
     StringBuilder check;
-      for(int i = 0; i < 3; i++){
-        check = new StringBuilder();
-        for(int ii = 0; ii<3; ii++)
-          if (board[ii][i].equals("X") || board[ii][i].equals("O")) {
-            check.append(board[ii][i]); 
-          }
-          if(check.toString().equals("XXX") ||  check.toString().equals("OOO")){
-          System.out.println("columnWIN");
-          return true;
+    for(int i = 0; i < 3; i++){
+      check = new StringBuilder();
+      for(int ii = 0; ii<3; ii++)
+        if (board[ii][i].equals("X") || board[ii][i].equals("O")) {
+          check.append(board[ii][i]);
         }
+      if(check.toString().equals("XXX") ||  check.toString().equals("OOO")){
+        System.out.println("columnWIN");
+        return true;
       }
+    }
     return false;
   }
 
   public boolean checkWinDiagonal(){
-    //checks a set of coordinates for diagonal win condition and returns true if the string contains XXX or OOO
-    String check = board[0][0] +  board[1][1] + board[2][2]; 
+    String check = board[0][0] +  board[1][1] + board[2][2];
     if(check.equals("XXX")|| check.equals("OOO")){
       System.out.println("diagonal win");
       return true;
     }
-    check = board[0][2] +  board[1][1] + board[2][0]; 
+    check = board[0][2] +  board[1][1] + board[2][0];
     if(check.equals("XXX")|| check.equals("OOO")){
       System.out.println("diagonal win");
       return true;
@@ -103,16 +102,16 @@ class Board{
     //counts the amount of empty spaces in the board. if 0, there are no more space left and proclaims draw
     int check=0;
     for(int i = 0; i < 3; i++){
-        for(int ii = 0; ii<3; ii++){
-          if(board[i][ii].equals(" ")){
-            check++;
-          }
+      for(int ii = 0; ii<3; ii++){
+        if(board[i][ii].equals(" ")){
+          check++;
         }
       }
-      if(check == 0){
-        System.out.println("Draw condition");
-        return true;
-      }
+    }
+    if(check == 0){
+      System.out.println("Draw condition");
+      return true;
+    }
     return false;
   }
 
