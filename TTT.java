@@ -14,7 +14,7 @@ class TTT{
         board.initializeBoardAsEmpty();
         this.keymapping();
         board.display();
-        this.p1Plays();
+        this.play();
     }
 
     public void keymapping(){
@@ -30,7 +30,7 @@ class TTT{
         numpadKeys.put(9 , "02");
     }
 
-    public void p1Plays(){
+    public void play(){
         String selection = "";
         boolean gameOn = true;
         while(gameOn){
@@ -40,7 +40,6 @@ class TTT{
                     selection = String.valueOf(scan.nextInt());
                     if(Integer.parseInt(selection) < 1 || Integer.parseInt(selection) > 9){
                         System.out.print("wrong selection, select another: ");
-                        continue;
                     }else{
                         break;
                     }
@@ -50,7 +49,7 @@ class TTT{
                 int secondCoordinate =Integer.parseInt(String.valueOf(selection.charAt(1)));
                 if(!board.setSymbolOnBoard(firstCoordinate, secondCoordinate, "X")){
                     System.out.println("slot busy, change selection");
-                    this.p1Plays();
+                    this.play();
                 }
 
                 if(board.checkALLWinCondition()){

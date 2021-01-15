@@ -36,6 +36,10 @@ class AI{
       System.out.println("performing random movement");
       break;
     } while (true);
+    if(board.checkALLWinCondition()){
+      board.display();
+      System.out.println("GAME OVER");
+    }
   }
 
 
@@ -71,7 +75,6 @@ class AI{
         }
         if(countX == 2 && countEmpty == 1){
           board.setSymbolOnBoard(firstCoordinate, secondCoordinate, "O");
-
           return true;
         }
       }
@@ -81,14 +84,14 @@ class AI{
 
   public boolean checkForImminentGameOverOnCOLUMNS(){
     String [][] tempBoard = board.getBoard();
-    int countX = 0;
-    int countEmpty = 0;
     for(int column = 0 ; column < 3 ; column++ ){
+      int countX = 0;
+      int countEmpty = 0;
       for(int row = 0; row<3; row++){
         if(tempBoard[column][row].equals("X")){
           countX++;
         }
-        if(tempBoard[column][row].equals(" ") && countEmpty<1){
+        else if(tempBoard[column][row].equals(" ") && countEmpty<1){
           countEmpty++;
           firstCoordinate = row;
           secondCoordinate = column;
@@ -116,6 +119,7 @@ class AI{
         countEmpty++;
         firstCoordinate=i;
         secondCoordinate=i;
+        System.out.println(firstCoordinate + " " + secondCoordinate);
       }
       if(countX==2 && countEmpty==1){
         board.setSymbolOnBoard(firstCoordinate, secondCoordinate, "O");
